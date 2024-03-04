@@ -1,3 +1,4 @@
+import { MAX_UINT256 } from "../../constants";
 import { StackError, StackErrorCodes } from "./errors";
 
 class Stack {
@@ -10,7 +11,7 @@ class Stack {
   }
 
   public push(value: bigint): void {
-    if (value < 0 || value > BigInt(2 ** 256))
+    if (value < 0 || value > MAX_UINT256)
       throw new StackError(
         "Invalid value",
         StackErrorCodes.InvalidValue,
@@ -32,3 +33,5 @@ class Stack {
     return value;
   }
 }
+
+export default Stack;

@@ -5,13 +5,13 @@
  * @returns {class} The custom error class.
  */
 export const createError = function (name: string) {
-  return class GenericError extends Error {
+  return class CustomError extends Error {
     /**
      * Creates a new custom error.
      *
      * @param {string} message - The error message.
      * @param {string} [code] - An optional error code.
-     * @param {object} [details] - Optional additional error details.
+     * @param {bigint} [value] - Optional error value.
      */
     constructor(message: string, public code?: string, public value?: bigint) {
       super(message);
