@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "ts-node src"
   },
   "author": "Kevin Gutierrez Gomez",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.11.24",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
