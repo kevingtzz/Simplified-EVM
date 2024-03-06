@@ -1,3 +1,5 @@
+import { hexlify } from "@ethersproject/bytes";
+
 import { MAX_UINT256 } from "../../constants";
 import { StackError, StackErrorCodes } from "./errors";
 
@@ -31,6 +33,13 @@ class Stack {
       throw new StackError("Stack underflow", StackErrorCodes.StackUnderflow);
 
     return value;
+  }
+
+  public print(): void {
+    console.info(
+      `Stack:\t`,
+      this.stack.map((value) => hexlify(value))
+    );
   }
 }
 
