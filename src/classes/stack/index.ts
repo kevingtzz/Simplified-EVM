@@ -35,6 +35,37 @@ class Stack {
     return value;
   }
 
+  private toStackIndex(index: number) {
+    return this.stack.length - index;
+  }
+
+  public duplicate(index: number): void {
+    const value = this.stack[this.toStackIndex(index)];
+
+    if (value === undefined) {
+      throw new StackError(
+        "Index out of bounds",
+        StackErrorCodes.IndexOutOfBounds
+      );
+    }
+
+    this.stack.push(value);
+  }
+
+  public swap(index: number): void {
+    const value = this.stack[this.toStackIndex(index)];
+
+    if (value === undefined) {
+      throw new StackError(
+        "Index out of bounds",
+        StackErrorCodes.IndexOutOfBounds
+      );
+    }
+
+    this.stack[this.toStackIndex(index)] = this.stack[this.toStackIndex(1)];
+    this.stack[this.toStackIndex(1)] = value;
+  }
+
   public print(): void {
     console.info(
       `Stack:\t`,

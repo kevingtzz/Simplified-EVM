@@ -179,38 +179,102 @@ const Opcodes: {
   0x7f: new Instruction(0x7f, "PUSH32", (context: ExecutionContext) => {
     context.stack.push(context.readBytesFromCode(32));
   }),
-  0x80: new Instruction(0x80, "DUP1"),
-  0x81: new Instruction(0x81, "DUP2"),
-  0x82: new Instruction(0x82, "DUP3"),
-  0x83: new Instruction(0x83, "DUP4"),
-  0x84: new Instruction(0x84, "DUP5"),
-  0x85: new Instruction(0x85, "DUP6"),
-  0x86: new Instruction(0x86, "DUP7"),
-  0x87: new Instruction(0x87, "DUP8"),
-  0x88: new Instruction(0x88, "DUP9"),
-  0x89: new Instruction(0x89, "DUP10"),
-  0x8a: new Instruction(0x8a, "DUP11"),
-  0x8b: new Instruction(0x8b, "DUP12"),
-  0x8c: new Instruction(0x8c, "DUP13"),
-  0x8d: new Instruction(0x8d, "DUP14"),
-  0x8e: new Instruction(0x8e, "DUP15"),
-  0x8f: new Instruction(0x8f, "DUP16"),
-  0x90: new Instruction(0x90, "SWAP1"),
-  0x91: new Instruction(0x91, "SWAP2"),
-  0x92: new Instruction(0x92, "SWAP3"),
-  0x93: new Instruction(0x93, "SWAP4"),
-  0x94: new Instruction(0x94, "SWAP5"),
-  0x95: new Instruction(0x95, "SWAP6"),
-  0x96: new Instruction(0x96, "SWAP7"),
-  0x97: new Instruction(0x97, "SWAP8"),
-  0x98: new Instruction(0x98, "SWAP9"),
-  0x99: new Instruction(0x99, "SWAP10"),
-  0x9a: new Instruction(0x9a, "SWAP11"),
-  0x9b: new Instruction(0x9b, "SWAP12"),
-  0x9c: new Instruction(0x9c, "SWAP13"),
-  0x9d: new Instruction(0x9d, "SWAP14"),
-  0x9e: new Instruction(0x9e, "SWAP15"),
-  0x9f: new Instruction(0x9f, "SWAP16"),
+  0x80: new Instruction(0x80, "DUP1", (context: ExecutionContext) => {
+    context.stack.duplicate(1);
+  }),
+  0x81: new Instruction(0x81, "DUP2", (context: ExecutionContext) => {
+    context.stack.duplicate(2);
+  }),
+  0x82: new Instruction(0x82, "DUP3", (context: ExecutionContext) => {
+    context.stack.duplicate(3);
+  }),
+  0x83: new Instruction(0x83, "DUP4", (context: ExecutionContext) => {
+    context.stack.duplicate(4);
+  }),
+  0x84: new Instruction(0x84, "DUP5", (context: ExecutionContext) => {
+    context.stack.duplicate(5);
+  }),
+  0x85: new Instruction(0x85, "DUP6", (context: ExecutionContext) => {
+    context.stack.duplicate(6);
+  }),
+  0x86: new Instruction(0x86, "DUP7", (context: ExecutionContext) => {
+    context.stack.duplicate(7);
+  }),
+  0x87: new Instruction(0x87, "DUP8", (context: ExecutionContext) => {
+    context.stack.duplicate(8);
+  }),
+  0x88: new Instruction(0x88, "DUP9", (context: ExecutionContext) => {
+    context.stack.duplicate(9);
+  }),
+  0x89: new Instruction(0x89, "DUP10", (context: ExecutionContext) => {
+    context.stack.duplicate(10);
+  }),
+  0x8a: new Instruction(0x8a, "DUP11", (context: ExecutionContext) => {
+    context.stack.duplicate(11);
+  }),
+  0x8b: new Instruction(0x8b, "DUP12", (context: ExecutionContext) => {
+    context.stack.duplicate(12);
+  }),
+  0x8c: new Instruction(0x8c, "DUP13", (context: ExecutionContext) => {
+    context.stack.duplicate(13);
+  }),
+  0x8d: new Instruction(0x8d, "DUP14", (context: ExecutionContext) => {
+    context.stack.duplicate(14);
+  }),
+  0x8e: new Instruction(0x8e, "DUP15", (context: ExecutionContext) => {
+    context.stack.duplicate(15);
+  }),
+  0x8f: new Instruction(0x8f, "DUP16", (context: ExecutionContext) => {
+    context.stack.duplicate(16);
+  }),
+  0x90: new Instruction(0x90, "SWAP1", (context: ExecutionContext) => {
+    context.stack.swap(1);
+  }),
+  0x91: new Instruction(0x91, "SWAP2", (context: ExecutionContext) => {
+    context.stack.swap(2);
+  }),
+  0x92: new Instruction(0x92, "SWAP3", (context: ExecutionContext) => {
+    context.stack.swap(3);
+  }),
+  0x93: new Instruction(0x93, "SWAP4", (context: ExecutionContext) => {
+    context.stack.swap(4);
+  }),
+  0x94: new Instruction(0x94, "SWAP5", (context: ExecutionContext) => {
+    context.stack.swap(5);
+  }),
+  0x95: new Instruction(0x95, "SWAP6", (context: ExecutionContext) => {
+    context.stack.swap(6);
+  }),
+  0x96: new Instruction(0x96, "SWAP7", (context: ExecutionContext) => {
+    context.stack.swap(7);
+  }),
+  0x97: new Instruction(0x97, "SWAP8", (context: ExecutionContext) => {
+    context.stack.swap(8);
+  }),
+  0x98: new Instruction(0x98, "SWAP9", (context: ExecutionContext) => {
+    context.stack.swap(9);
+  }),
+  0x99: new Instruction(0x99, "SWAP10", (context: ExecutionContext) => {
+    context.stack.swap(10);
+  }),
+  0x9a: new Instruction(0x9a, "SWAP11", (context: ExecutionContext) => {
+    context.stack.swap(11);
+  }),
+  0x9b: new Instruction(0x9b, "SWAP12", (context: ExecutionContext) => {
+    context.stack.swap(12);
+  }),
+  0x9c: new Instruction(0x9c, "SWAP13", (context: ExecutionContext) => {
+    context.stack.swap(13);
+  }),
+  0x9d: new Instruction(0x9d, "SWAP14", (context: ExecutionContext) => {
+    context.stack.swap(14);
+  }),
+  0x9e: new Instruction(0x9e, "SWAP15", (context: ExecutionContext) => {
+    context.stack.swap(15);
+  }),
+  0x9f: new Instruction(0x9f, "SWAP16", (context: ExecutionContext) => {
+    context.stack.swap(16);
+  }),
   0xf3: new Instruction(0xf3, "RETURN"),
 };
 
