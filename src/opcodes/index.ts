@@ -1,3 +1,4 @@
+import { arrayify, hexlify } from "@ethersproject/bytes";
 import ExecutionContext from "../classes/execution";
 import Instruction from "../classes/instruction";
 
@@ -275,7 +276,12 @@ const Opcodes: {
   0x9f: new Instruction(0x9f, "SWAP16", (context: ExecutionContext) => {
     context.stack.swap(16);
   }),
-  0xf3: new Instruction(0xf3, "RETURN"),
+  0xf3: new Instruction(0xf3, "RETURN", (context: ExecutionContext) => {
+    const [offset, size] = [context.stack.pop(), context.stack.pop()];
+    const output = context.memory.load(offset);
+    const outputHex = arrayify(output.toString(16)).slice(0, Number(size));
+    context.output = BigInt(hexlify(outputHex));
+  }),
 };
 
 export default Opcodes;

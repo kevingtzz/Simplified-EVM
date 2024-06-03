@@ -11,6 +11,7 @@ class ExecutionContext {
   private readonly code: Uint8Array;
   private pc: number;
   private stopped: boolean;
+  public output: bigint = BigInt(0);
 
   public stack: Stack;
   public memory: Memory;
@@ -49,6 +50,8 @@ class ExecutionContext {
       this.stack.print();
       console.log("--------------------");
     }
+
+    console.log("Output:\t", hexlify(this.output));
   }
 
   private fetchInstruction(): Instruction {
