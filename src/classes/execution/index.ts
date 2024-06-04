@@ -1,4 +1,5 @@
 import { isHexString, arrayify, hexlify } from "@ethersproject/bytes";
+import { Trie } from "@ethereumjs/trie";
 
 import Stack from "../stack";
 import Memory from "../memory";
@@ -12,10 +13,12 @@ class ExecutionContext {
   private pc: number;
   private stopped: boolean;
   public output: bigint = BigInt(0);
+  // public storage: Trie;
 
   public stack: Stack;
   public memory: Memory;
 
+  // constructor(code: string, storage: Trie) {
   constructor(code: string) {
     if (!isHexString(code) || code.length % 2 !== 0) {
       throw new ExecutionError(
@@ -29,6 +32,7 @@ class ExecutionContext {
     this.memory = new Memory();
     this.pc = 0;
     this.stopped = false;
+    // this.storage = storage;
   }
 
   public stop(): void {
@@ -36,13 +40,13 @@ class ExecutionContext {
     console.info("Execution context stopped");
   }
 
-  public run(): void {
+  public async run() {
     console.info("Running execution context...");
     while (!this.stopped) {
       const currentPc = this.pc;
       const instruction = this.fetchInstruction();
 
-      instruction.execute(this);
+      await instruction.execute(this);
 
       console.info(`${instruction.name}:\t @pc=${currentPc}`);
 
@@ -52,6 +56,7 @@ class ExecutionContext {
     }
 
     console.log("Output:\t", hexlify(this.output));
+    // console.log("Root:\t", hexlify(this.storage.root()));
   }
 
   private fetchInstruction(): Instruction {

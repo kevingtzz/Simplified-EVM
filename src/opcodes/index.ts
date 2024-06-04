@@ -86,8 +86,15 @@ const Opcodes: {
     const [offset, value] = [context.stack.pop(), context.stack.pop()];
     context.memory.store(offset, value);
   }),
-  0x54: new Instruction(0x54, "SLOAD", (context: ExecutionContext) => {}),
-  0x55: new Instruction(0x55, "SSTORE"),
+  0x54: new Instruction(0x54, "SLOAD", async (context: ExecutionContext) => {
+    // const key = context.stack.pop();
+    // const value = context.storage.get(key);
+    // context.stack.push(value ? value : BigInt(0));
+  }),
+  0x55: new Instruction(0x55, "SSTORE", async (context: ExecutionContext) => {
+    // const [key, value] = [context.stack.pop(), context.stack.pop()];
+    // await context.storage.put(key, value);
+  }),
   0x56: new Instruction(0x56, "JUMP"),
   0x57: new Instruction(0x57, "JUMPI"),
   0x5b: new Instruction(0x5b, "JUMPDEST"),

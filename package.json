@@ -15,6 +15,11 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@ethersproject/bytes": "^5.7.0"
+    "@ethereumjs/trie": "^6.2.0",
+    "@ethereumjs/util": "^9.0.3",
+    "@ethersproject/bytes": "^5.7.0",
+    "abstract-level": "^2.0.0",
+    "level": "^8.0.1",
+    "memory-level": "^1.0.0"
   }
 }

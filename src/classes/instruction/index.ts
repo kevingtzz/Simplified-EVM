@@ -11,7 +11,7 @@ const defaultExecute = () => {
 class Instruction {
   public readonly opcode: number;
   public readonly name: string;
-  public readonly execute: (context: ExecutionContext) => void;
+  public readonly execute: (context: ExecutionContext) => Promise<void> | void;
 
   constructor(
     opcode: number,
