@@ -77,9 +77,16 @@ const Opcodes: {
   0x50: new Instruction(0x50, "POP", (context: ExecutionContext) => {
     context.stack.pop();
   }),
-  0x51: new Instruction(0x51, "MLOAD"),
-  0x52: new Instruction(0x52, "MSTORE"),
-  0x54: new Instruction(0x54, "SLOAD"),
+  0x51: new Instruction(0x51, "MLOAD", (context: ExecutionContext) => {
+    const offset = context.stack.pop();
+    const value = context.memory.load(offset);
+    context.stack.push(value);
+  }),
+  0x52: new Instruction(0x52, "MSTORE", (context: ExecutionContext) => {
+    const [offset, value] = [context.stack.pop(), context.stack.pop()];
+    context.memory.store(offset, value);
+  }),
+  0x54: new Instruction(0x54, "SLOAD", (context: ExecutionContext) => {}),
   0x55: new Instruction(0x55, "SSTORE"),
   0x56: new Instruction(0x56, "JUMP"),
   0x57: new Instruction(0x57, "JUMPI"),
