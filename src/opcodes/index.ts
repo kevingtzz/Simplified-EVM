@@ -4,6 +4,7 @@ import Instruction from "../classes/instruction";
 
 const Opcodes: {
   0: Instruction;
+  0x5b: Instruction;
   [key: number]: Instruction | undefined;
 } = {
   0x00: new Instruction(0x00, "STOP", (context: ExecutionContext) =>
@@ -95,9 +96,15 @@ const Opcodes: {
     // const [key, value] = [context.stack.pop(), context.stack.pop()];
     // await context.storage.put(key, value);
   }),
-  0x56: new Instruction(0x56, "JUMP"),
-  0x57: new Instruction(0x57, "JUMPI"),
-  0x5b: new Instruction(0x5b, "JUMPDEST"),
+  0x56: new Instruction(0x56, "JUMP", (context: ExecutionContext) => {
+    const dest = context.stack.pop();
+    context.jump(dest);
+  }),
+  0x57: new Instruction(0x57, "JUMPI", (context: ExecutionContext) => {
+    const [destination, b] = [context.stack.pop(), context.stack.pop()];
+    if (Boolean(b)) context.jump(destination);
+  }),
+  0x5b: new Instruction(0x5b, "JUMPDEST", () => undefined),
   0x60: new Instruction(0x60, "PUSH1", (context: ExecutionContext) => {
     context.stack.push(context.readBytesFromCode(1));
   }),

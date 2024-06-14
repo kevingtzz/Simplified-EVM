@@ -1,5 +1,5 @@
 import { isHexString, arrayify, hexlify } from "@ethersproject/bytes";
-import { Trie } from "@ethereumjs/trie";
+// import { Trie } from "@ethereumjs/trie";
 
 import Stack from "../stack";
 import Memory from "../memory";
@@ -89,6 +89,17 @@ class ExecutionContext {
     this.pc += bytes;
 
     return values;
+  }
+
+  public jump(destination: bigint): void {
+    if (!this.isValidJumpDestination(destination))
+      throw new ExecutionError(ExecutionErrorCodes.InvalidJumpDestination);
+
+    this.pc = Number(destination);
+  }
+
+  private isValidJumpDestination(destination: bigint): boolean {
+    return this.code[Number(destination) - 1] === Opcodes[0x5b].opcode;
   }
 }
 

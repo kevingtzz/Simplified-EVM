@@ -1,13 +1,6 @@
 import ExecutionContext from "../execution";
 import { InstructionError, InstructionErrorCodes } from "./errors";
 
-const defaultExecute = () => {
-  throw new InstructionError(
-    "Not implemented",
-    InstructionErrorCodes.NotImplemented
-  );
-};
-
 class Instruction {
   public readonly opcode: number;
   public readonly name: string;
@@ -16,7 +9,7 @@ class Instruction {
   constructor(
     opcode: number,
     name: string,
-    execute: (context: ExecutionContext) => void = defaultExecute
+    execute: (context: ExecutionContext) => void
   ) {
     this.opcode = opcode;
     this.name = name;
